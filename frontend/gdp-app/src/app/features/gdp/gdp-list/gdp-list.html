@@ -1,0 +1,38 @@
+<p-card header="GDP Dashboard">
+  <div class="mb-3">
+    <p-autocomplete
+      [(ngModel)]="selectedSource"
+      [suggestions]="items"
+      (completeMethod)="search($event)"
+      (onSelect)="loadData()"
+      [dropdown]="true"
+      placeholder="Select source"
+      field="label"
+    >
+    </p-autocomplete>
+  </div>
+
+  <p-table [value]="data" *ngIf="!loading; else loader">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Country</th>
+        <th>Year</th>
+        <th>GDP</th>
+        <th>Source</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-row>
+      <tr>
+        <td>{{ row.country }}</td>
+        <td>{{ row.time }}</td>
+        <td>{{ row.gdp }}</td>
+        <td>Eurostat</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <ng-template #loader>
+    <p-progressSpinner></p-progressSpinner>
+  </ng-template>
+</p-card>
