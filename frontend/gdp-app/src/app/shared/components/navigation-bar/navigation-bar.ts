@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { label } from '@primeuix/themes/aura/metergroup';
 import { MenuItem } from 'primeng/api';
 import { Menubar } from 'primeng/menubar';
 

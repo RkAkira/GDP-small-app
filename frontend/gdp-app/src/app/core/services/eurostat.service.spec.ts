@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Eurostat } from './eurostat.service';
+import { EurostatService } from './eurostat.service';
 
 describe('Eurostat', () => {
-  let service: Eurostat;
+  let service: EurostatService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Eurostat);
+    service = TestBed.inject(EurostatService);
   });
 
   it('should be created', () => {
