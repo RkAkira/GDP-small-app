@@ -1,4 +1,8 @@
-<p-card header="GDP Dashboard">
+<p-card
+  header="GDP Dashboard"
+  [style]="{ borderTop: '5px solid #003399', boxShadow: '0 2px 6px rgba(0,0,0,0.1)' }"
+>
+  <p class="subtitle">Official GDP reporting comparison from EUROSTAT & AMECO</p>
   <div class="mb-3">
     <p-autocomplete
       [(ngModel)]="selectedSource"
@@ -12,12 +16,19 @@
     </p-autocomplete>
   </div>
 
-  <p-table [value]="data" *ngIf="!loading; else loader">
+  <p-table
+    [value]="data"
+    styleClass="eutable"
+    [paginator]="true"
+    [rows]="15"
+    responsiveLayout="scroll"
+  >
+    >
     <ng-template pTemplate="header">
       <tr>
         <th>Country</th>
         <th>Year</th>
-        <th>GDP</th>
+        <th pTooltip="in millions Euro" tooltipPosition="bottom">GDP</th>
         <th>Source</th>
       </tr>
     </ng-template>
@@ -31,8 +42,5 @@
       </tr>
     </ng-template>
   </p-table>
-
-  <ng-template #loader>
-    <p-progressSpinner></p-progressSpinner>
-  </ng-template>
+  <div class="eu-loader" *ngIf="loading"></div>
 </p-card>

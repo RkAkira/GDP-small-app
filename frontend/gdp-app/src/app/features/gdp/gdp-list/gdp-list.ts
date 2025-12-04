@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { GDPEntry } from '../../../core/models/gdp-entry.model';
 import { EurostatService } from '../../../core/services/eurostat.service';
-import { combineLatest } from 'rxjs';
 import {TableModule} from 'primeng/table';
 import { CommonModule } from '@angular/common';
-import { ProgressSpinner } from 'primeng/progressspinner';
 import { CardModule } from 'primeng/card';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @Component({
   selector: 'app-gdp-list',
-  imports: [TableModule, CommonModule, ProgressSpinner, CardModule, AutoCompleteModule, FormsModule],
+  imports: [TableModule, CommonModule, CardModule, AutoCompleteModule, FormsModule, TooltipModule],
   templateUrl: './gdp-list.html',
   styleUrl: './gdp-list.scss',
 })

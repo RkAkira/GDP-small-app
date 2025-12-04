@@ -5,7 +5,6 @@ UE27 = ["EU27_2020","BE","BG","CZ","DK","DE","EE","IE","EL","ES","FR","HR","IT",
 
 def fetch_eurostat():
     estat = sdmx.Client("ESTAT")
-    # flow = estat.dataflow("namq_10_gdp")
     dm = estat.data("NAMA_10_GDP",key={"unit":"CP_MEUR"}, params={"startPeriod":"2024"})
     return dm
 
@@ -20,7 +19,7 @@ def parse_eurostat(response):
         "TIME_PERIOD":"time",
         "value":"gdp"
     })
-    df = df.dropna(subset=["gdp"])  # Supprime les lignes avec des NaN
-    df["gdp"] = pd.to_numeric(df["gdp"], errors='coerce')  # Convertit en float, remplace les erreurs par NaN
-    df = df.dropna(subset=["gdp"])  # Supprime les lignes avec des NaN après conversion
+    df = df.dropna(subset=["gdp"]) 
+    df["gdp"] = pd.to_numeric(df["gdp"], errors='coerce') 
+    df = df.dropna(subset=["gdp"]) 
     return df.to_dict(orient="records")
