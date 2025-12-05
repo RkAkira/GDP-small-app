@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    image: gdp-api:1.0.0
+    container_name: gdp-backend
+    ports: 
+      - "8000:8000"
+    networks:
+      - gdp-net
+  node:
+    build: ./node
+    image: gdp-node:1.0.0
+    container_name: gdp-node
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    environment:
+      PYTHON_API: "http://backend:8000"
+    networks:
+      - gdp-net
+  frontend:
+    build: ./frontend
+    image: gdp-frontend:1.0.0
+    container_name: gdp-frontend
+    depends_on:
+      node:
+        condition: service_started
+    ports:
+      - "8080:80"
+    environment:
+      API_URL: "http://node:3000"
+    networks:
+      - eu-net
+
+networks:
+  eu-net:
+    driver: bridge
