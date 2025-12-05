@@ -9,7 +9,6 @@ import {environment} from '../../../environments/environment';
 })
 export class EurostatService {
   private baseUrl = environment.apiUrl;
-
   constructor(private http: HttpClient) {}
 
   getGDP(): Observable<GDPEntry[]>{

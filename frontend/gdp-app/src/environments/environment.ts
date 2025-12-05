@@ -1,3 +1,5 @@
 export const environment = {
-    apiUrl: (window as any)["API_URL"] || "http://localhost:3000",
+    apiUrl: typeof window !== 'undefined'
+      ? (window as any)['API_URL']
+      : 'http://localhost:3000',
 };

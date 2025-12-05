@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { GDPEntry } from '../../../core/models/gdp-entry.model';
 import { EurostatService } from '../../../core/services/eurostat.service';
 import {TableModule} from 'primeng/table';
@@ -29,7 +29,7 @@ export class GdpListComponent implements OnInit {
 
   selectedSource: { label: string; value: string } | undefined = this.sources[0];
 
-  constructor(private eurostat: EurostatService) {}
+  constructor(private eurostat: EurostatService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.loadData();
@@ -42,6 +42,7 @@ export class GdpListComponent implements OnInit {
       this.eurostat.getGDP().subscribe((d) => {
         this.data = d;
         this.loading = false;
+        this.cdr.detectChanges();
       });
     } else if (this.selectedSource?.value === 'ameco') {
       alert('Cannot access to AMECO. WIP');
