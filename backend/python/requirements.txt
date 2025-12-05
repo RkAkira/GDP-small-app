@@ -1,4 +1,5 @@
 fastapi[standard]
+uvicorn
 pandas
 sdmx1
 pysdmx
